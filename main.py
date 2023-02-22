@@ -1,14 +1,20 @@
-def obey(str: command):
-    pass
+def obey(action):
+    basic.show_string(action)
 
-def decode(str: code):
-    pass
-
-
-    
-
+def decode(this):
+    if this == '---':
+        return 'S'
+    elif  this == '...':
+        return 'O'
+    else:
+        return ' '
+      
 def morse_check():
-    letter = '?'
+    global DASH, LETTER, LOUD, QUIET  
+    global listening, beeping
+    global beepOn, beepOff
+
+    letter = ' '
     pattern = ""
     if listening:
         if beeping: 
@@ -39,11 +45,9 @@ def on_forever():
     # do all kinds of stuff...
     basic.show_icon(IconNames.HEART)
     # check for morse command
-    code = morse_check()   
-    if code = "?" :
-        pass
-    else:
-        obey(letter)
+    command = morse_check()   
+    if command != ' ':
+        obey(command)
 
     
 
@@ -54,4 +58,5 @@ QUIET = 100
 listening = False
 beeping = False
 beepOn = 0
+beepOff = 0
 basic.forever(on_forever)

@@ -1,19 +1,25 @@
-function obey(str: any) {
-    
+function obey(action: string) {
+    basic.showString(action)
 }
 
-function decode(str: string): string {
+function decode(this_: string): string {
+    if (this_ == "---") {
+        return "S"
+    } else if (this_ == "...") {
+        return "O"
+    } else {
+        return " "
+    }
     
 }
 
 function morse_check(): string {
-    let beepOff: number;
-    let beeping: boolean;
     let length: number;
     let gap: number;
-    let listening: boolean;
-    let beepOn: number;
-    let letter = "?"
+    
+    
+    
+    let letter = " "
     let pattern = ""
     if (listening) {
         if (beeping) {
@@ -57,9 +63,14 @@ let QUIET = 100
 let listening = false
 let beeping = false
 let beepOn = 0
+let beepOff = 0
 basic.forever(function on_forever() {
     //  do all kinds of stuff...
     basic.showIcon(IconNames.Heart)
     //  check for morse command
-    let letter = morse_check()
+    let command = morse_check()
+    if (command != " ") {
+        obey(command)
+    }
+    
 })
