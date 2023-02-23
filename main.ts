@@ -108,4 +108,5 @@ basic.forever(function on_forever() {
         obey(String.fromCharCode(morse_step))
     }
     
+    basic.pause(20)
 })

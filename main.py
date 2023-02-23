@@ -92,7 +92,7 @@ def on_forever():
     morse_check()
     if morse_step > 0:
         obey(String.from_char_code(morse_step))
-
+    basic.pause(20)
     
 
 basic.forever(on_forever)
