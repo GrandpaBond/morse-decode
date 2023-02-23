@@ -12,13 +12,12 @@ def decode(this):
 def morse_check():
     global DASH, LETTER, LOUD, QUIET  
     global listening, beeping
-    global beepOn, beepOff
-
     letter = ' '
     pattern = ""
     if listening:
         if beeping: 
-            if input.sound_level() < QUIET:
+            # if input.sound_level() < QUIET:
+            if not input.button_is_pressed(Button.A):
                 beepOff = control.millis()
                 beeping = False 
                 # analyse length of beep that just stopped
@@ -36,7 +35,8 @@ def morse_check():
                 pattern = ''
             # else keep listening for more dots or dashes
     else:
-        if input.sound_level() > LOUD:
+        # if input.sound_level() > LOUD:
+        if input.button_is_pressed(Button.A):
             beepOn = control.millis()
             listening = True
     return (letter)

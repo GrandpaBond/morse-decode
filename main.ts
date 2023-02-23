@@ -14,16 +14,18 @@ function decode(this_: string): string {
 }
 
 function morse_check(): string {
+    let beepOff: number;
     let length: number;
     let gap: number;
-    
+    let beepOn: number;
     
     
     let letter = " "
     let pattern = ""
     if (listening) {
         if (beeping) {
-            if (input.soundLevel() < QUIET) {
+            //  if input.sound_level() < QUIET:
+            if (!input.buttonIsPressed(Button.A)) {
                 beepOff = control.millis()
                 beeping = false
                 //  analyse length of beep that just stopped
@@ -48,7 +50,7 @@ function morse_check(): string {
             
         }
         
-    } else if (input.soundLevel() > LOUD) {
+    } else if (input.buttonIsPressed(Button.A)) {
         beepOn = control.millis()
         listening = true
     }
