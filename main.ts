@@ -3,7 +3,15 @@ let DASH_MIN = 500
 let LETTER_PAUSE = 1000
 let LOUD = 200
 let QUIET = 100
-let MORSE_TABLE = [3, 63, 123, 79, 47, 99, 95, 119, 127, 114, 135, 59, 87, 71, 103, 75, 129, 64, 1, 88, 0, 104, 81, 50, 136, 52, 140, 146, 108, 2, 3, 24, 20, 0, 16, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 8, 28, 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 36, 0, 40, 4, 0, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90]
+let MORSE_TABLE = [87, 147, 103, 71, 123, 119, 143, 151, 138, 159, 83, 111, 95, 127, 99, 153, 88, 1, 112, 0, 128, 105, 74, 160, 76, 164, 170, 132, 2, 3, 24, 20, 0, 16, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 8, 28, 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 36, 0, 64, 4, 0]
+//  binary tree of state values:
+//  singles .                -
+//  pairs   ..      .-       -.       --
+//  threes  ... ..- .-. .--  -.. -.-  --. ---
+//  fours...
+//  fives...
+//  Bottom two bits encode whether another dash or dot (or either) gives a valid code
+//  if letter is finished, divide by four and add 48 to get the character-code
 let morse_step = 0
 let command = ""
 let busy = false
